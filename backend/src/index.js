@@ -1,6 +1,6 @@
 const express =require("express");
 const dotenv= require("dotenv");
-const connectDB= require("./service/db.js")
+const connectDB= require("./config/db.js")
 dotenv.config();
 const PORT =process.env.PORT;
 
@@ -9,12 +9,12 @@ connectDB();
 const app =express();
 const homeRouter= require("./routes/homeRouter.js");
 const userRouter= require("./routes/userRouter.js");
-
+const authRouter= require("./routes/authRoutes.js");
 app.use(express.json());
 
-app.use("/home",homeRouter);
-app.use("/api/auth",userRouter);
-
+app.use("/",homeRouter);
+app.use("/api/user",userRouter);
+app.use("/api/auth",authRouter)
 app.use((err,req,res,next)=>{
 	console.log(err);
 

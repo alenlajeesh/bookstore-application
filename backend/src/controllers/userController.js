@@ -1,8 +1,17 @@
 const User= require("../models/User.js")
+const bcrypt =require("bcrypt");
 
 exports.createUser= async (req,res,next)=>{
 	try{
-		const user = await User.create(req.body);
+
+		const { name,email,password }=req.body;
+		const  hashedPassword= await bcrypt.hash(password,10);
+
+		const user = await User.create({
+			name,
+			email,
+			password:hashedPassword
+		});
 		res.status(201).json({
 			success:true,
 			user
