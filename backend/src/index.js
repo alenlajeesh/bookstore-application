@@ -10,11 +10,16 @@ const app =express();
 const homeRouter= require("./routes/homeRouter.js");
 const userRouter= require("./routes/userRouter.js");
 const authRouter= require("./routes/authRoutes.js");
+const bookRouter =require("./routes/bookRouter.js");
+
 app.use(express.json());
 
 app.use("/",homeRouter);
 app.use("/api/user",userRouter);
-app.use("/api/auth",authRouter)
+app.use("/api/auth",authRouter);
+app.use("/api/books",bookRouter);
+
+
 app.use((err,req,res,next)=>{
 	console.log(err);
 
