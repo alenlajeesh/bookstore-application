@@ -18,7 +18,6 @@ function Dashboard(){
 		.then(res=>res.json())
 		.then(data=>{
 			setUser(data.user||data)
-			console.log(data);
 		})
 		.catch(err=>console.log(err));
 		console.log(user)
