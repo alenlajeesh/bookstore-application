@@ -35,7 +35,13 @@ exports.getUsers=async (req,res,next)=>{
 
 exports.getUserById= async (req,res,next)=>{
 	try{
-		const user= await User.findById(req.params.id);
+		const user= await User.findById(req.user.id).select("-password");
+
+		if(!user){
+			return res.json({
+				message:"User not found"
+			})
+		}
 		res.json({
 			success:true,
 			user
@@ -49,7 +55,7 @@ exports.getUserById= async (req,res,next)=>{
 exports.updateUserById = async (req,res,next)=>{
 	try{
 		const user= await User.findByIdAndUpdate(
-			req.params.id,
+			req.user.id,
 			req.body,
 			{new:true}
 		);
@@ -65,7 +71,7 @@ exports.updateUserById = async (req,res,next)=>{
 }
 exports.deleteById= async (req,res,next)=>{
 	try{
-		await User.findByIdAndDelete(req.params.id);
+		await User.findByIdAndDelete(req.user.id);
 		res.json({
 			message:"User Deleted"
 		})

@@ -1,7 +1,6 @@
 const User = require("../models/User");
-const { all } = require("../routes/bookRouter");
 
-function permission(...allowed){
+const  permission=(...allowed)=>{
 	return async (req,res,next)=>{
 		try{
 			const user= await User.findById(req.user);
@@ -25,4 +24,4 @@ function permission(...allowed){
 	}
 }
 
-module. exports=permission;
+module.exports=permission;

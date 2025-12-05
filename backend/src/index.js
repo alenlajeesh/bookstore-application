@@ -1,6 +1,7 @@
 const express =require("express");
 const dotenv= require("dotenv");
 const connectDB= require("./config/db.js")
+const cors=require("cors")
 dotenv.config();
 const PORT =process.env.PORT;
 
@@ -13,6 +14,7 @@ const authRouter= require("./routes/authRoutes.js");
 const bookRouter =require("./routes/bookRouter.js");
 
 app.use(express.json());
+app.use(cors());
 
 app.use("/",homeRouter);
 app.use("/api/user",userRouter);
