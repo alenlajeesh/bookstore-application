@@ -4,6 +4,7 @@ import Register from "./pages/Register"
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard"
 import NavBar from "./components/NavBar";
+import CreateBook from "./pages/CreateBook"
 function App() {
   return (
     <>
@@ -14,6 +15,7 @@ function App() {
 				<Route path="/login" element={<Login/>}></Route>
 				<Route path="/register" element={<Register/>}></Route>
 				<Route path="/dashboard" element={<Dashboard/>}></Route>
+				<Route path="/create-book" element={<CreateBook/>}></Route>
 			</Routes>
 		</BrowserRouter>
     </>

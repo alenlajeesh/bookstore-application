@@ -3,7 +3,7 @@ const User = require("../models/User");
 const  permission=(...allowed)=>{
 	return async (req,res,next)=>{
 		try{
-			const user= await User.findById(req.user);
+			const user= await User.findById(req.user.id);
 
 			if(!user){
 				return res.status(401).json({
@@ -11,7 +11,7 @@ const  permission=(...allowed)=>{
 				})
 			}
 			if(!allowed.includes(user.role)){
-				return res.status(404).json({
+				return res.status(403).json({
 					message:"Access Denied"
 				})
 			}
